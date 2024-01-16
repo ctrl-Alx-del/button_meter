@@ -1,8 +1,5 @@
-*{
-    margin: 0 auto;
-}
-
 body {
+    margin: 0 auto;
     height: 100vh;
     background: rgb(2,0,36);
     background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(76,9,121,1) 35%, rgba(81,0,255,0.17128858379289214) 100%);
@@ -12,10 +9,9 @@ main{
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 700px;
-    display: flex;
+    width: 100%;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     height: 80vh;
 }
 
@@ -57,6 +53,7 @@ button {
  background-color: greenyellow;
  height: 0px;
  width: 30px;
+ border: #000000 3px solid;
 }
 
 #blockBox{
@@ -79,7 +76,7 @@ button {
 
 @keyframes shadows {
     0% { text-shadow: #ffffff 0 0 70px; }
-    50% { text-shadow: blueviolet 0 0 70px; }
+    50% { text-shadow: rgb(128, 128, 128) 0 0 70px; }
     75% { text-shadow: rebeccapurple 0 0 70px;}
     100% { text-shadow: #000000 0 0 70px; }
    }
