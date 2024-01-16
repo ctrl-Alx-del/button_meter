@@ -6,6 +6,8 @@ const progressBar = document.querySelector("#block");
 const percentage = document.querySelector("#percentage");
 let status_ = false;
 let interval = null;
+let incFlag = false;
+let incrementIntervalActive = false;
 
 function init() {
   btnChangeColor();
@@ -18,11 +20,17 @@ function barIncrease() {
   //Do so the bar moves linearly upwards instead of jumping WITHOUT css animation!
   btnIncrease.addEventListener("mousedown", () => {
     status_ = true;
-    update();
+    incFlag = true;
+
+    if (!incrementIntervalActive) {
+      incrementIntervalActive = true;
+      update();
+    }
   });
 
   btnIncrease.addEventListener("mouseup", () => {
     status_ = false;
+    incFlag = false;
     update();
   });
 
@@ -31,6 +39,7 @@ function barIncrease() {
       interval = setInterval(() => {
         if (progressNum <= 99) {
           progressNum++;
+          console.log("progress Num: ", progressNum);
         }
 
         progressBar.style.height = `${progressNum}px`;
@@ -38,6 +47,19 @@ function barIncrease() {
       }, 30);
     } else {
       clearInterval(interval);
+
+      interval = setInterval(() => {
+        if (!incFlag && progressNum > 0) {
+          progressNum--;
+          console.log("progress Num: ", progressNum);
+        } else if (progressNum === 0) {
+          clearInterval(interval);
+          incrementIntervalActive = false;
+        }
+
+        progressBar.style.height = `${progressNum}px`;
+        percentage.textContent = `${progressNum} %`;
+      }, 30);
     }
   }
 }
